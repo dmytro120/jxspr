@@ -41,9 +41,10 @@ public class XSPR extends Application
             ArrayList<File> discoveredFiles = new ArrayList<>();
             searchForFiles(rootFS, targetType, discoveredFiles);
 
+            String rootPathMSW = rootPath.replace("/", "\\");
             ObservableList<String> baseNameList = FXCollections.<String>observableArrayList();
             for (File file : discoveredFiles) {
-                baseNameList.add(file.getPath().replace(rootPath, ""));
+                baseNameList.add(file.getPath().replace(rootPath, "").replace(rootPathMSW, ""));
             }
 
             ListView<String> listView = new ListView<>(baseNameList);
